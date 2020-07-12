@@ -1,1 +1,7 @@
-name: My Jekyll Website (jekyll-scratch) :)
+title: Rohil Shah
+email: shah5963@gmail.com
+github_username: rohildshah
+description: Rohil D. Shah's personal portfolio.
+
+baseurl: ""
+url: "http://rohildshah.github.io"
