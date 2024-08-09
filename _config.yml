@@ -9,3 +9,4 @@ url: https://rohildshah.github.io
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
