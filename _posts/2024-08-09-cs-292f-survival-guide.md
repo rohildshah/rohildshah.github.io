@@ -122,6 +122,8 @@ Now that our development environment is set up, it's time to actually do the pro
 5. Make your own .OBJ loader class using [this guide](https://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/) that I found from Prof. Yan's slides. Understand it and edit to your needs.
 6. Find .OBJ files on the internet and use [Meshlab](https://www.meshlab.net/) to normalize them to a form that your loader class can handle.
 
+![]({{ site.baseurl }}/assets/images/292F/Project 0.png)
+
 ----
 <br/>
 
@@ -132,6 +134,9 @@ After completing Project 0, there is significantly less setup required to implem
 1. This [NVIDIA PCSS Whitepaper](https://developer.download.nvidia.com/whitepapers/2008/PCSS_Integration.pdf) can help with ideas.
 2. [This](https://github.com/diharaw/area-light-shadows/tree/master) project from [diharaw](https://github.com/diharaw) suggests using Poisson-disk sampling.
 3. I found this PCSS overview from [gamedev.net](https://www.gamedev.net/tutorials/programming/graphics/effect-area-light-shadows-part-1-pcss-r4971/) to be informative.
+
+![]({{ site.baseurl }}/assets/images/292F/Project 1a.png)
+![]({{ site.baseurl }}/assets/images/292F/Project 1b.png)
 
 ----
 <br/>
@@ -146,6 +151,9 @@ Out of RSM, VXGI, SSDO, and SSR, I chose to implement SSDO. I also chose to begi
 4. The Gram-Schmidt process is important for normal-orienting your sample hemisphere. Read about it on Wikipedia [here](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process).
 5. Here's Tobias Ritschel's [original SSDO paper](https://people.mpi-inf.mpg.de/~ritschel/Papers/SSDO.pdf) for reference.
 6. Once I got SSAO working, this [SSAO to SSDO report](https://ascane.github.io/assets/portfolio/ssdo-report.pdf) by Chia-Man Hung helped me get my bearings to take on SSDO.
+
+![]({{ site.baseurl }}/assets/images/292F/Project 2a.png)
+![]({{ site.baseurl }}/assets/images/292F/Project 2b.png)
 
 ----
 <br/>
@@ -187,6 +195,9 @@ My final implementation included a joint bilateral filter, temporal accumulation
 1. To implement temporal accumulation, simply write the default framebuffer's default color attachment (output texture) to another texture within the main loop using `glCopyTexSubImage2D`. This gave me a headache for a while before I realized you don't need any other framebuffers other than the default one, along with some free-floating textures.
 2. Get out a pencil and paper to work out the correct conversions for the motion vectors and world position so that you don't dig yourself into a hole with silly mistakes and spend hours digging yourself out (like I did).
 3. When accumulating the weighted color from every sample around a pixel, divide out the albedo of sample. Then, multiply the pixel's albedo to the result of the weighted average to compensate for the loss. This stops the albedo component from being blurred and will lead to much cleaner results.
+
+![]({{ site.baseurl }}/assets/images/292F/Project 4a.png)
+![]({{ site.baseurl }}/assets/images/292F/Project 4b.png)
 
 ----
 <br/>
