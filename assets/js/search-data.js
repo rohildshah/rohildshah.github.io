@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
+        },{id: "nav-cv",
+          title: "cv",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cv/";
+          },
         },{id: "post-survival-guide-to-cs-292f-real-time-high-quality-rendering",
         
           title: "Survival Guide to CS 292F: Real-Time High Quality Rendering",
@@ -45,6 +52,13 @@ ninja.data = [{
           title: 'Looking forward to joining ChipAgents as an AI Agent Engineer Intern during winter...',
           description: "",
           section: "News",},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/cv/Rohil%20Shah%20Resume.pdf", "_blank");
+        },
+      },{
         id: 'social-email',
         title: 'email',
         section: 'Socials',
