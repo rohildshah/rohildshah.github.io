@@ -31,7 +31,7 @@ Hi, I'm Rohil. 👋
 
 I am a 4th-year Computer Science undergraduate at the [University of California, Santa Barbara](https://www.ucsb.edu/) within the [College of Creative Studies](https://ccs.ucsb.edu/). I am currently a student researcher in the **UCSB Neural Information Retrieval Lab**, advised by [Prof. Tao Yang](https://cs.ucsb.edu/people/faculty/tao-yang).
 
-**I am applying to Ph.D. programs in Computer Science for the 2026 academic year.**
+**I am applying to MS/Ph.D. programs in Computer Science for the 2026 academic year.**
 
 My research focuses on the intersection of **Systems and Machine Learning**. I am interested in designing the data infrastructure and retrieval logic required to support reliable, large-scale Agentic AI systems.
 
