@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-11-03
+date: 2026-01-06
 inline: true
 ---
-Looking forward to joining <a href="https://chipagents.ai/" target="_blank">ChipAgents</a> as an AI Agent Engineer Intern during winter quarter!
+Excited to join <a href="https://chipagents.ai/" target="_blank">ChipAgents</a> as an AI Agent Engineer Intern for winter quarter!
