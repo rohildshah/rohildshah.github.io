@@ -48,8 +48,8 @@ ninja.data = [{
           section: "News",},{id: "news-received-the-judges-choice-award-at-netapp-s-internal-engineering-hackathon",
           title: 'Received the Judges Choice Award at NetApp’s internal engineering hackathon.',
           description: "",
-          section: "News",},{id: "news-looking-forward-to-joining-chipagents-as-an-ai-agent-engineer-intern-during-winter-quarter",
-          title: 'Looking forward to joining ChipAgents as an AI Agent Engineer Intern during winter...',
+          section: "News",},{id: "news-excited-to-join-chipagents-as-an-ai-agent-engineer-intern-for-winter-quarter",
+          title: 'Excited to join ChipAgents as an AI Agent Engineer Intern for winter quarter!...',
           description: "",
           section: "News",},{
         id: 'social-cv',
