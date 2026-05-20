@@ -6,7 +6,7 @@ subtitle: <b>Undergraduate Researcher @ UCSB | Systems, IR, & AI Infrastructure<
 
 profile:
   align: right
-  image: headshot.jpg
+  image: headshot_grad.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>College of Creative Studies</p>
