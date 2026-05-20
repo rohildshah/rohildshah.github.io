@@ -51,6 +51,12 @@ ninja.data = [{
           section: "News",},{id: "news-excited-to-join-chipagents-as-an-ai-agent-engineer-intern-for-winter-quarter",
           title: 'Excited to join ChipAgents as an AI Agent Engineer Intern for winter quarter!...',
           description: "",
+          section: "News",},{id: "news-joined-google-as-a-software-engineer-intern-on-the-android-ai-platform-team",
+          title: 'Joined Google as a Software Engineer Intern on the Android AI Platform team!...',
+          description: "",
+          section: "News",},{id: "news-our-paper-on-efficient-sparse-retrieval-has-been-accepted-to-the-full-papers-track-of-sigir-2026",
+          title: 'Our paper on efficient sparse retrieval has been accepted to the Full Papers...',
+          description: "",
           section: "News",},{
         id: 'social-cv',
         title: 'CV',
@@ -85,6 +91,13 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("/feed.xml", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=Z3sL9rUAAAAJ", "_blank");
         },
       },{
       id: 'light-theme',
