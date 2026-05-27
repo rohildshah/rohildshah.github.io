@@ -57,6 +57,12 @@ ninja.data = [{
           section: "News",},{id: "news-our-paper-on-efficient-sparse-retrieval-has-been-accepted-to-the-full-papers-track-of-sigir-2026",
           title: 'Our paper on efficient sparse retrieval has been accepted to the Full Papers...',
           description: "",
+          section: "News",},{id: "news-very-grateful-to-be-awarded-the-nsf-graduate-research-fellowship-grfp",
+          title: 'Very grateful to be awarded the NSF Graduate Research Fellowship (GRFP)!',
+          description: "",
+          section: "News",},{id: "news-committed-to-stanford-university-for-a-master-s-in-computer-science-beginning-in-fall-2026",
+          title: 'Committed to Stanford University for a Master’s in Computer Science beginning in Fall...',
+          description: "",
           section: "News",},{
         id: 'social-cv',
         title: 'CV',
