@@ -1,21 +1,22 @@
 ---
 layout: post
-title:  "Survival Guide to CS 292F: Real-Time High Quality Rendering"
-date:   2024-08-09 12:33:16 -0700
+title: "Survival Guide to CS 292F: Real-Time High Quality Rendering"
+date: 2024-08-09 12:33:16 -0700
 ---
 
 In Spring 2024, I took Professor Lingqi Yan's offering of [CS 292F: Real-Time High Quality Rendering](https://sites.cs.ucsb.edu/~lingqi/teaching/cs292f.html) at UCSB. I came into this class with little to no previous experience in computer graphics. Here's my "developer diary" that may help you succeed in the class if you are in the same situation.
 
 As a brief aside, I consciously chose not to use NanoGUI or similar tools to try and code the projects from "scratch". This definitely slowed me down, especially by the time I got to the last project, since it would have been useful to see the effect of changing a constant without re-running the process. However, at least at the beginning, I gained a deeper understanding of how the development environment really worked.
 
-----
+---
+
 <br/>
 
 ## Project 0: A Real-Time Object Viewer
 
 The main task for this project is to set up your development environment. I work on an M1 Macbook Pro and chose VS Code as my IDE. I also arbitrarily chose OpenGL as my graphics interface. Your mileage my vary with this guide if you are using different tools.
 
-__Note:__ [OpenGL is deprecated on MacOS](https://www.reddit.com/r/opengl/comments/oc8ec1/opengl_on_mac/). However, it's still usable at version 4.1, and it's unlikely you'll need the newer features present in versions > 4.1 for this class.
+**Note:** [OpenGL is deprecated on MacOS](https://www.reddit.com/r/opengl/comments/oc8ec1/opengl_on_mac/). However, it's still usable at version 4.1, and it's unlikely you'll need the newer features present in versions > 4.1 for this class.
 
 This guide on [setting up OpenGL with MacOS/VS Code](https://selamjie.medium.com/set-opengl-on-macos-with-vs-code-1a92850c8c6f) proved very useful in getting me started, although I did things slightly differently at various steps.
 
@@ -25,8 +26,8 @@ There's also Learn OpenGL's ["Creating a window"](https://learnopengl.com/Gettin
 
 Online tutorials, including the ones linked above, often begin with a recommendation to blindly install GLFW, GLUT, GLEW, GLAD, or others. To understand exactly what each is used for, [this](https://www.reddit.com/r/cpp_questions/comments/ryr3fk/good_explanations_of_differences_between_glfw/) is a helpful Reddit post. Here's a brief summary:
 
-1. __GLFW/GLUT:__ Provides the essentials to create a window or handle inputs/events. I chose GLFW.
-2. __GLAD/GLEW:__ Provides an interface to access OpenGL API functions. Read [this paragraph](https://arc.net/l/quote/ouglhyqm) from Learn OpenGL for more details. I chose GLAD.
+1. **GLFW/GLUT:** Provides the essentials to create a window or handle inputs/events. I chose GLFW.
+2. **GLAD/GLEW:** Provides an interface to access OpenGL API functions. Read [this paragraph](https://arc.net/l/quote/ouglhyqm) from Learn OpenGL for more details. I chose GLAD.
 
 GLFW and GLAD are the bare minimum necessary to get your first window and first triangle on your screen.
 
@@ -47,66 +48,81 @@ I simply followed the instructions from the first guide [linked above](https://a
 Now comes the task of wrangling these libraries to ensure successful compilation of your C++ code. The guides linked above recommend [VS Code Tasks](https://code.visualstudio.com/docs/editor/tasks) or [CMake](https://cmake.org/) as build systems. I'm unfamiliar with both, so I opted to keep things simple by using a [Makefile](https://makefiletutorial.com/). Let's walk through it here:
 
 1. First, define the C and C++ compilers:
+
 ```
 C = clang
 CPP = clang++
 ```
+
 - Since GLAD is a C-based library, it is necessary to first compile the C into an object file using `clang`, then include the object file as a source file for `clang++`.
-<br/><br/>
+  <br/><br/>
 
 2. Next, define their flags:
+
 ```
 C_FLAGS = -Wall -Wno-unused-command-line-argument -c
 CPP_FLAGS = -Wall -std=c++11
 ```
+
 - The `-c` flag for `clang` will generate an object file, as desired.
 - I arbitrarily chose C++11 for this class.
-<br/><br/>
+  <br/><br/>
 
 3. Define output directories:
+
 ```
 APP_NAME = main
 BUILD_DIR = ./bin
 ```
+
 - `./bin` is arbitrarily the location for any outputs.Executables will be named `main` or `main.o` (depending on the stage of compilation).
-<br/><br/>
+  <br/><br/>
 
 4. Define sources for C and C++:
+
 ```
 C_SOURCES = ./src/*.c
 CPP_SOURCES = ./src/*.cpp
 ```
 
 5. Define include file directory (`.h` files):
+
 ```
 APP_INCLUDES = -I./include -framework Cocoa -framework OpenGL -framework IOKit
 ```
+
 - Since we placed the GLAD header under `include/glad/`, we must make sure `clang++` can "see" it.
 - I'm unsure on the specifics of the framework arguments, but they seem to be necessary given [this guide](https://gist.github.com/v3n/27e810ac744b076ceeb7).
-<br/><br/>
+  <br/><br/>
 
 6. Define linked libraries:
+
 ```
 APP_LINKERS = -lglfw3
 ```
+
 - Since we installed GLFW via brew, we don't need to manually link the `.dylib` file or similar. It is automatically found by `clang`.
-<br/><br/>
+  <br/><br/>
 
 7. Now the actual build task:
+
 ```
 build:
 	$(C) $(C_SOURCES) $(C_FLAGS) -o $(BUILD_DIR)/$(APP_NAME).o $(APP_INCLUDES) $(APP_LINKERS)
 	$(CPP) $(BUILD_DIR)/$(APP_NAME).o $(CPP_SOURCES) $(CPP_FLAGS) -o $(BUILD_DIR)/$(APP_NAME) $(APP_INCLUDES) $(APP_LINKERS)
 ```
+
 - Note the C compilation step will output the object file `bin/main.o`
 - Then, `bin/main.o` is included as one of the sources for the C++ compilation step.
-<br/><br/>
+  <br/><br/>
 
 8. Finally, the run task:
+
 ```
 run: build
 	$(BUILD_DIR)/$(APP_NAME)
 ```
+
 - Note that the run task naturally depends on the build task
 
 Now, `make build` and `make run` should correctly compile your C++ code. As I got further with the projects, I found myself needing to add custom classes or new libraries. They fit cleanly into this framework: `.h` files can be placed under the `include/` directory, and their corresponding `.cpp` files can be placed under the `src/` directory.
@@ -124,7 +140,8 @@ Now that our development environment is set up, it's time to actually do the pro
 
 ![]({{ site.baseurl }}/assets/images/292F/Project 0.png)
 
-----
+---
+
 <br/>
 
 ## Project 1: Percentage Closer Soft Shadows
@@ -138,7 +155,8 @@ After completing Project 0, there is significantly less setup required to implem
 ![]({{ site.baseurl }}/assets/images/292F/Project 1a.png)
 ![]({{ site.baseurl }}/assets/images/292F/Project 1b.png)
 
-----
+---
+
 <br/>
 
 ## Project 2: Global Illumination Techniques
@@ -155,14 +173,16 @@ Out of RSM, VXGI, SSDO, and SSR, I chose to implement SSDO. I also chose to begi
 ![]({{ site.baseurl }}/assets/images/292F/Project 2a.png)
 ![]({{ site.baseurl }}/assets/images/292F/Project 2b.png)
 
-----
+---
+
 <br/>
 
 ## Project 3: Kulla-Conty Multiple-Bounce BRDF
 
 I chose to skip this project! Since I had become comfortable with my development environment, I didn't feel like leaving it to implement this project on ShaderToy.
 
-----
+---
+
 <br/>
 
 ## Project 4: Real-Time Ray Tracing
@@ -178,7 +198,7 @@ I arbitrarily chose [Blender](https://www.blender.org/) for this task since I al
 3. In addition to the 1 SPP ray-traced images, you'll want the G-buffer information via [Blender's Render Data Passes](https://docs.blender.org/manual/en/latest/render/layers/passes.html).
 4. Save all of this data to files using the [Blender compositor](https://docs.blender.org/manual/en/latest/compositing/index.html). Here's a [forum article](https://blender.stackexchange.com/questions/28740/how-can-i-render-all-render-passes-to-files-in-cycles) on doing that.
 5. I chose to save the data to PNGs, but you can save it to whatever format you like. The next section will explain why PNGs are useful when loading the data to the GPU.
-5. The compositor is also where you can modify your data to fit the strict RGB [0, 1] requirements of PNGs. For example, world position and motion vectors will have some negative values, which need to be mapped to [0, 1] as you see fit.
+6. The compositor is also where you can modify your data to fit the strict RGB [0, 1] requirements of PNGs. For example, world position and motion vectors will have some negative values, which need to be mapped to [0, 1] as you see fit.
 
 ### Loading the images to the GPU
 
@@ -199,7 +219,8 @@ My final implementation included a joint bilateral filter, temporal accumulation
 ![]({{ site.baseurl }}/assets/images/292F/Project 4a.png)
 ![]({{ site.baseurl }}/assets/images/292F/Project 4b.png)
 
-----
+---
+
 <br/>
 
 ## Final thoughts
