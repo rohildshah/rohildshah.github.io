@@ -63,6 +63,12 @@ ninja.data = [{
           section: "News",},{id: "news-committed-to-stanford-university-for-a-master-s-in-computer-science-beginning-in-fall-2026",
           title: 'Committed to Stanford University for a Master’s in Computer Science beginning in Fall...',
           description: "",
+          section: "News",},{id: "news-graduated-from-the-college-of-creative-studies-at-uc-santa-barbara-with-a-b-s-in-computer-science",
+          title: 'Graduated from the College of Creative Studies at UC Santa Barbara with a...',
+          description: "",
+          section: "News",},{id: "news-excited-to-be-joining-roblox-as-a-software-engineer-intern-working-on-search-and-recommendation-systems",
+          title: 'Excited to be joining Roblox as a Software Engineer Intern working on search...',
+          description: "",
           section: "News",},{
         id: 'social-cv',
         title: 'CV',
