@@ -187,7 +187,6 @@ exclude:
   - _projects/
   - _bibliography/
   - _pages/projects.md
-  - _pages/publications.md
   - _pages/repositories.md
   - _pages/teaching.md
   - _pages/books.md
